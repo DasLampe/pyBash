@@ -1,0 +1,16 @@
+#AddType application/x-httpd-php5 .php
+
+<Files *.conf.php>
+  order allow,deny
+  deny from all
+</Files>
+
+RewriteEngine On
+#RewriteBase /
+
+RewriteCond %{REQUEST_FILENAME} .css$ [OR]
+RewriteCond %{REQUEST_FILENAME} .js$
+RewriteRule (^.*)$ index.php?param=resource/$1 [NC,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule (^.*)$ index.php?param=$1 [NC,L]

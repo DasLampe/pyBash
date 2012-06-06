@@ -1,0 +1,7 @@
+#Eclipse files
+.settings/
+.buildpath
+.project
+
+#vim swp files
+*.swp
