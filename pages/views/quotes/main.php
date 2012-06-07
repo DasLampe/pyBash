@@ -3,8 +3,8 @@
 // | Copyright (c) 2012 DasLampe <daslampe@lano-crew.org> |
 // | Encoding:  UTF-8 |
 // +----------------------------------------------------------------------+
-?>
-<ul>
-	<li><a href="<?= LINK_MAIN; ?>home">Startseite</a></li>
-	<li><a href="<?= LINK_MAIN; ?>quotes">Zitate</a></li>
-</ul>
+
+$tpl->vars("headline", "Zitate");
+$tpl->vars("content",	"[ZITATE Übersicht]");
+
+echo $tpl->load("content");

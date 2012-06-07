@@ -4,7 +4,7 @@
 // | Encoding:  UTF-8 |
 // +----------------------------------------------------------------------+
 ?>
-<ul>
-	<li><a href="<?= LINK_MAIN; ?>home">Startseite</a></li>
-	<li><a href="<?= LINK_MAIN; ?>quotes">Zitate</a></li>
-</ul>
+<h1>Fehler - Seite nicht gefunden</h1>
+<p>
+Leider kann die Aufgerufene Seite nicht gefunden werden! :(
+</p>

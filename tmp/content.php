@@ -4,7 +4,5 @@
 // | Encoding:  UTF-8 |
 // +----------------------------------------------------------------------+
 ?>
-<ul>
-	<li><a href="<?= LINK_MAIN; ?>home">Startseite</a></li>
-	<li><a href="<?= LINK_MAIN; ?>quotes">Zitate</a></li>
-</ul>
+<h1>Zitate</h1>
+[ZITATE Übersicht]
