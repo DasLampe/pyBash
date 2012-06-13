@@ -3,5 +3,13 @@
 // | Copyright (c) 2012 DasLampe <daslampe@lano-crew.org> |
 // | Encoding:  UTF-8 |
 // +----------------------------------------------------------------------+
-header("HTTP/1.0 404 Not Found");
-require_once PATH_VIEW.'error/404.php';
+abstract class AbstractView {
+	protected $tpl;
+	protected $model;
+	
+	public function __construct() {
+		$this->tpl	= pyBashTemplate::getInstance();
+	}
+	
+	abstract public function MainView();
+}

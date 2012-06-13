@@ -17,29 +17,23 @@
 	<a class="skip" title="ym-skip" href="#content">Skip to the content</a><span class="hideme">.</span>
 </div>
 <div class="ym-wrapper">
-	<div class="ym-wbox">
-	<header>
-		<h1>pyBash</h1>
-	</header>
-	<nav id="nav">
-		<a id="navigation" name="navigation"></a>
-		<div class="ym-hlist">
-			<?php
-				include_once(PATH_CONTROLLER."menu.php");
-			?>
+		<header>
+			<h1>pyBash</h1>
+		</header>
+		<nav id="nav">
+			<a id="navigation" name="navigation"></a>
+			<div class="ym-hlist">
+				<?php
+					include_once(PATH_CONTROLLER."menu.php");
+				?>
+			</div>
+		</nav>
+		<div id="main">
+			{page_content}
 		</div>
-	</div>
-	<div id="main">
-		<div class="ym-wbox">
-			<?php
-				include_once(PATH_CONTROLLER.$page.".php");
-			?>
+		<footer>
+			Layout based on <a href="http://www.yaml.de/">YAML</a>
 		</div>
-		
-		<div class="ym-wbox">
-			<div id="footer">Layout based on <a href="http://www.yaml.de/">YAML</a></div>
-		</div>
-	</div>
 </div>
 </body>
 </html>

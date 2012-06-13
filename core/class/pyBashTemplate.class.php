@@ -45,7 +45,7 @@ class pyBashTemplate
 		$this->vars("LINK_MAIN", 	LINK_MAIN);
 	}
 	 
-	public function load($tplFile, $output=0, $tplFolder="")
+	public function load($tplFile, $tplFolder="", $output=0)
 	{
 		if(empty($tplFolder))
 		{

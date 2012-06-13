@@ -4,7 +4,7 @@
 // | Encoding:  UTF-8 |
 // +----------------------------------------------------------------------+
 ?>
-<h1>Fehler - Seite nicht gefunden</h1>
+<h1>{headline}</h1>
 <p>
-Leider kann die Aufgerufene Seite nicht gefunden werden! :(
+{content}
 </p>

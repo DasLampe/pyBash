@@ -9,3 +9,4 @@ define("MYSQL_PASS",		"");
 define("MYSQL_DB",			"pyBash");
 
 define("MYSQL_PREFIX",	"pyBash_");
+define("MYSQL_FETCH_MODE",	PDO::FETCH_ASSOC);

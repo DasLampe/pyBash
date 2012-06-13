@@ -17,18 +17,19 @@ class pageController
 	{
 		$param				= $this->param;
 		$tpl				= $this->tpl;
-		$page				= "";
 		if(file_exists(PATH_CONTROLLER.$this->param[0].".php"))
 		{
-			$page			= $this->param[0];
+			include_once(PATH_CONTROLLER.$this->param[0].".php");
+			$page_controller	= ucfirst($this->param[0]).'Controller';
+			$page_controller	= new $page_controller($param);
 		}
 		else
 		{
-			$page			= "404";
+			include_once(PATH_CORE_CONTROLLER."error.controller.php");
+			$page_controller	= new ErrorController('404');
 		}
-
-		ob_start("pyBashPostProccess::protectEmail");
-		include_once(PATH_TPL."layout.php");
-		ob_end_flush();
+		
+		$this->tpl->vars("page_content", $page_controller->factoryController());
+		echo $this->tpl->load("layout");
 	}
 }

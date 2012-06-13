@@ -3,8 +3,8 @@
 // | Copyright (c) 2012 DasLampe <daslampe@lano-crew.org> |
 // | Encoding:  UTF-8 |
 // +----------------------------------------------------------------------+
-
-$tpl->vars("headline", "Zitate");
-$tpl->vars("content",	"[ZITATE Übersicht]");
-
-echo $tpl->load("content");
+?>
+<div class="box info">
+	<div class="dimmed">{ID} - {inserted} - {reporter_name}</div>
+	{qoute}
+</div>

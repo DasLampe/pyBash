@@ -3,8 +3,13 @@
 // | Copyright (c) 2012 DasLampe <daslampe@lano-crew.org> |
 // | Encoding:  UTF-8 |
 // +----------------------------------------------------------------------+
-if(!isset($param[1]))
+class QuotesController extends AbstractController
 {
-	require_once PATH_VIEW.'quotes/main.php';
+	public function factoryController()
+	{
+		include_once(PATH_VIEW."quotes.php");
+		$this->view	= new QuotesView();
+		
+		return $this->view->MainView();
+	}
 }
-?>

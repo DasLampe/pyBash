@@ -26,6 +26,7 @@ class pyBashDb {
 				{
 					self::$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
 				}
+				self::$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, MYSQL_FETCH_MODE);
 				self::$db->exec("SET CHARACTER SET utf8");
 			}
 			catch(Exeptions $e)
@@ -36,16 +37,3 @@ class pyBashDb {
 		return self::$db;
 	}
 }
-	
-	/*function __construct()
-	{
-		try
-		{
-			return $dbh	= new PDO("mysql:host=".MYSQL_HOST.";dbname=".MYSQL_DB, MYSQL_USER, MYSQL_PASS);	
-		}
-		catch(PDOException $e)
-    	{
-    		echo $e->getMessage();
-    		die("Fehler beim Datenbank Verbindungsaufbau!");
-    	}
-	}*/

@@ -17,6 +17,8 @@ define("PATH_TPL",				PATH_MAIN."template/");
 define("PATH_PAGES",			PATH_MAIN."pages/");
 define("PATH_CONTROLLER",		PATH_PAGES."controller/");
 define("PATH_VIEW",				PATH_PAGES."views/");
+define("PATH_MODEL",			PATH_PAGES."models/");
+define("PATH_PAGES_TPL",		PATH_PAGES."template/");
 
 
 define("LINK_MAIN",				"http://localhost/pyBash/");
