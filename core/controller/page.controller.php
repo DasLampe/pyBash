@@ -15,13 +15,12 @@ class pageController
 
 	function render()
 	{
-		$param				= $this->param;
 		$tpl				= $this->tpl;
 		if(file_exists(PATH_CONTROLLER.$this->param[0].".php"))
 		{
 			include_once(PATH_CONTROLLER.$this->param[0].".php");
 			$page_controller	= ucfirst($this->param[0]).'Controller';
-			$page_controller	= new $page_controller($param);
+			$page_controller	= new $page_controller($this->param);
 		}
 		else
 		{

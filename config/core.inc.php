@@ -8,6 +8,7 @@ include_once(PATH_CORE_CLASS."pyBashDB.class.php");
 include_once(PATH_CORE_CLASS."pyBashLog.class.php");
 include_once(PATH_CORE_CLASS."pyBashTemplate.class.php");
 include_once(PATH_CORE_CLASS."pyBashPostProccess.class.php");
+include_once(PATH_CORE_CLASS."pyBashException.class.php");
 
 //Abstract Controller
 include_once(PATH_CORE."abstract/controller.php");

@@ -4,7 +4,8 @@
 // | Encoding:  UTF-8 |
 // +----------------------------------------------------------------------+
 ?>
-<div class="box info">
-	<div class="dimmed">{ID} - {inserted} - {reporter_name}</div>
-	{qoute}
-</div>
+<h1>Zitat vom {inserted}</h1>
+<div class="dimmed">Eingesendet von: {reporter_name}</div>
+<p class="box">
+{quote}
+</p>

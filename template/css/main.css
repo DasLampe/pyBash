@@ -5,8 +5,12 @@ body
 }
 
 .ym-wrapper {
-	border: 1px solid #000000;
 	background-color: #F3F3F3;
+}
+
+.ym-wrapper, header
+{
+	border-radius: 25px 25px 0 0;
 }
 
 header
