@@ -6,5 +6,6 @@
 ?>
 <ul>
 	<li><a href="<?= LINK_MAIN; ?>home">Startseite</a></li>
-	<li><a href="<?= LINK_MAIN; ?>quotes">Zitate</a></li>
+	<li><a href="<?= LINK_MAIN; ?>quotes/all">Zitate</a></li>
+	<li><a href="<?= LINK_MAIN; ?>quotes/insert">Zitat hinzufügen</a></li>
 </ul>

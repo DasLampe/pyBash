@@ -58,10 +58,17 @@ class QuotesModel extends AbstractModel
 	
 	public function InsertQuote($reporter_name, $quote)
 	{
-			$sth		= $this->db->prepare("INSERT INTO ".MYSQL_PREFIX."quotes
-										(reporter_name, quote)
-										VALUES
-										(:reporter_name, :quote)");
-			return $sth->execute(array("reporter_name" => $reporter_name, ":quote" => $quote));
+		$quote	= trim($quote);
+		
+		//remove timestamp
+		$quote	= preg_replace("/(\(|\[)?[0-2][0-9]((:|-)[0-5][0-9]){2}(\)|\])?/", "", $quote);
+		//formating username		
+		$quote	= preg_replace("/^\s?<?([a-z_0-9]{5,})(>|:)?\s/im", '<$1> ', $quote);
+
+		$sth		= $this->db->prepare("INSERT INTO ".MYSQL_PREFIX."quotes
+									(reporter_name, quote)
+									VALUES
+									(:reporter_name, :quote)");
+		return $sth->execute(array("reporter_name" => $reporter_name, ":quote" => $quote));
 	}
 }
