@@ -26,6 +26,7 @@ class SidebarModel extends AbstractModel {
 	{
 		$sth	= $this->db->query("SELECT reporter_name
 					FROM ".MYSQL_PREFIX."quotes
+					WHERE status = 2
 					GROUP BY reporter_name
 					ORDER BY COUNT(id) DESC
 					LIMIT 1");

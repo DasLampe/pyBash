@@ -55,4 +55,13 @@ class QuotesModel extends AbstractModel
 		$sth->execute(array(':quote_id' => $quote_id));
 		return $sth->fetch();
 	}
+	
+	public function InsertQuote($reporter_name, $quote)
+	{
+			$sth		= $this->db->prepare("INSERT INTO ".MYSQL_PREFIX."quotes
+										(reporter_name, quote)
+										VALUES
+										(:reporter_name, :quote)");
+			return $sth->execute(array("reporter_name" => $reporter_name, ":quote" => $quote));
+	}
 }

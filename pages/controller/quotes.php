@@ -24,7 +24,7 @@ class QuotesController extends AbstractController
 				}
 				elseif($this->param[1] == "insert")
 				{
-					return $this->view->InsertQuoteView();
+					return $this->view->InsertQuoteView($_POST);
 				}
 				elseif(is_numeric($this->param[1]))
 				{
