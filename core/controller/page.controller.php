@@ -16,6 +16,13 @@ class pageController
 	function render()
 	{
 		$tpl				= $this->tpl;
+		
+		//Sidebar
+		include_once(PATH_CONTROLLER."sidebar.php");
+		$sidebar			= new SidebarController($this->param);
+		$tpl->vars("sidebar",	$sidebar->factoryController());
+		
+		//Content
 		if(file_exists(PATH_CONTROLLER.$this->param[0].".php"))
 		{
 			include_once(PATH_CONTROLLER.$this->param[0].".php");

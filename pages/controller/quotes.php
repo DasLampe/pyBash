@@ -14,9 +14,25 @@ class QuotesController extends AbstractController
 		{
 			try
 			{
-				if(is_numeric($this->param[1]))
+				if($this->param[1] == "all")
+				{
+					return $this->view->AllQuotesView();
+				}
+				elseif($this->param[1] == "random")
+				{
+					return $this->view->RandomQuotesView();
+				}
+				elseif($this->param[1] == "insert")
+				{
+					return $this->view->InsertQuoteView();
+				}
+				elseif(is_numeric($this->param[1]))
 				{
 					return $this->view->QuoteView($this->param[1]);
+				}
+				else
+				{
+					throw new pyBashException("Unkown parameter");
 				}
 			}
 			catch (pyBashException $e)

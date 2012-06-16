@@ -22,3 +22,22 @@ header
 	background: -o-linear-gradient(#6A6A6B, #3D3D3D);
 	background: linear-gradient(#6A6A6B, #3D3D3D);
 }
+
+.ym-column {
+	display: block;
+	overflow: hidden;
+	padding-right: 250px; /* column width */
+	width: auto;
+}
+.ym-col1 { /* content */
+	position: relative;
+	float: left;
+	width: 100%;
+	border-right: 1px #000000 solid;
+}
+.ym-col3 { /* sidebar */
+	position: relative;
+	float: left;
+	width: 249px; /* column width */
+	margin: 0 -250px 0 0;
+}

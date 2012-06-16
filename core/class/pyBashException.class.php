@@ -20,12 +20,22 @@ class pyBashException extends Exception
 	private function saveException()
 	{
 		$db					= pyBashDb::getConnection();
-		$exception_number	= substr(md5(uniqid(time(), TRUE)), 0, 5);
+		$exception_id		= substr(md5(uniqid(time(), TRUE)), 0, 5);
 		$sth	= $db->prepare("INSERT INTO ".MYSQL_PREFIX."debug
-					(message, trace, timestamp, exception_number)
+					(message, timestamp, exception_id, trace, exception_file, exception_line, request_uri, request_referer, request_method)
 					VALUES
-					(:message, :trace, :timestamp, :exception_number)");
-		$sth->execute(array(":message"	=> $this->getMessage(), ":trace" => $this->getTraceAsString(), ":timestamp" => time(), "exception_number" => $exception_number));
-		return $exception_number;
+					(:message, :timestamp, :exception_id, :trace, :exception_file, :exception_line, :request_uri, :request_referer, :request_method)");
+		$sth->execute(array(
+							":message"			=> $this->getMessage(), 
+							":timestamp"		=> time(),
+							"exception_id"		=> $exception_id,
+							":trace"			=> $this->getTraceAsString(),
+							":exception_file"	=> $this->getFile(),
+							":exception_line"	=> $this->getLine(),
+							":request_uri"		=> $_SERVER['REQUEST_URI'],
+							":request_referer"	=> $_SERVER['HTTP_REFERER'] = (isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 0),
+							":request_method"	=> $_SERVER['REQUEST_METHOD'],
+							));
+		return $exception_id;
 	}
 }

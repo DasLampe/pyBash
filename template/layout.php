@@ -16,7 +16,7 @@
 	<a class="skip" title="ym-skip" href="#navigation">Skip to the navigation</a><span class="hideme">.</span>
 	<a class="skip" title="ym-skip" href="#content">Skip to the content</a><span class="hideme">.</span>
 </div>
-<div class="ym-wrapper">
+	<div class="ym-wrapper">
 		<header>
 			<h1>pyBash</h1>
 		</header>
@@ -29,11 +29,25 @@
 			</div>
 		</nav>
 		<div id="main">
-			{page_content}
+			<div class="ym-column">
+				<div class="ym-col1">
+					<div class="ym-cbox ym-clearfix">
+						{page_content}
+					</div>
+				</div>
+				{if} {sidebar} != "" {/if}
+					<div class="ym-col3">
+						<div class="ym-cbox">
+							{sidebar}
+						</div>
+					</div>
+				{/endif}
+			</div>
 		</div>
 		<footer>
 			Layout based on <a href="http://www.yaml.de/">YAML</a>
+		</footer>
 		</div>
-</div>
+	</div>
 </body>
 </html>
