@@ -105,38 +105,32 @@ class QuotesView extends AbstractView
 	 */
 	public function InsertQuoteView($data)
 	{
+		include_once(PATH_CORE_CLASS."pyBashForm.class.php");
+		$form		= new pyBashForm();
+		
 		$reporter_name	= (!isset($data['reporter_name'])) ? "" : $data['reporter_name'];
 		$quote			= (!isset($data['quote'])) ? "" : $data['quote'];
 		
 		$form_fields	= array(
-				array("fieldset", "Eintragen", array(
-						array("text", "Username", "reporter_name", $reporter_name, True),
-						array("textarea", "Zitat", "quote", $quote, True),
-				)
-				),
-				array("fieldset", "", array(
-						array("submit", "Eintragen", "submit"),
-				)
-				),
-		);
+							array("fieldset", "Eintragen", array(
+								array("text", "Username", "reporter_name", $reporter_name, True),
+								array("textarea", "Zitat", "quote", $quote, True),
+								)
+							),
+							array("fieldset", "", array(
+								array("submit", "Eintragen", "submit"),
+								)
+							),
+						);
 		
 		if(!isset($data['submit']))
 		{
-			include_once(PATH_CORE_CLASS."pyBashForm.class.php");
-			$form		= new pyBashForm();
-			
 			return $form->GetForm($form_fields,  LINK_MAIN."quotes/insert");
 		}
 		else
 		{
-			if(!isset($data['reporter_name']) || empty($data['reporter_name']) || !isset($data['reporter_name']) || empty($data['quote']))
+			if($form->Validation($form_fields, $_POST) == False)
 			{
-				include_once(PATH_CORE_CLASS."pyBashForm.class.php");
-				$form		= new pyBashForm();
-				
-				$error_message	= array(array("error", "Bitte alle Felder ausfüllen!"));
-				$form_fields	= array_merge($error_message, $form_fields);
-				
 				return $form->GetForm($form_fields,  LINK_MAIN."quotes/insert");
 			}
 			

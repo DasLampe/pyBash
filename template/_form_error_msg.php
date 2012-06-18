@@ -4,7 +4,4 @@
 // | Encoding:  UTF-8 |
 // +----------------------------------------------------------------------+
 ?>
-<form class="ym-form ym-columnar" action="{action}" method="{method}">
-	{error_msg}
-	{fields}
-</form>
+<p class="ym-message">Fehler: {message}</p>

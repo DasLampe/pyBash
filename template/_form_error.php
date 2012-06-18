@@ -5,5 +5,5 @@
 // +----------------------------------------------------------------------+
 ?>
 <div class="ym-fbox-text ym-error">
-	<p class="ym-message">Fehler: {label}</p>
+	{error_message}
 </div>

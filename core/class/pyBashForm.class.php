@@ -5,10 +5,12 @@
 // +----------------------------------------------------------------------+
 class pyBashForm {
 	private $tpl;
+	private $error_msg;
 	
 	public function __construct()
 	{
-		$this->tpl	= pyBashTemplate::getInstance();
+		$this->tpl			= pyBashTemplate::getInstance();
+		$this->error_msg	= array();
 	}
 	
 	public function GetForm(array $fields, $action, $method="post")
@@ -16,9 +18,62 @@ class pyBashForm {
 		$this->tpl->vars("fields",		$this->GetFormFields($fields));
 		$this->tpl->vars("action",		$action);
 		$this->tpl->vars("method",		$method);
+		$this->tpl->vars("error_msg",	$this->GetErrorMsg());
 		return $this->tpl->load("form");
 	}
 	
+	public function Validation(array $fields, array $data)
+	{
+		$return = True;
+		foreach($fields as $field)
+		{
+			if($field[0] == "fieldset")
+			{
+				$return = $this->Validation($field[2], $data);
+				continue;
+			}
+			
+			//check if field required, have value
+			if(isset($field[4]) && $field[4] == True && empty($data[$field[2]]))
+			{
+				$this->error_msg[]	= 'Bitte Feld "'.$field[1].'" ausfüllen!';
+				$return = False;
+			}
+
+			switch($field[1])
+			{
+				case "text":
+					break;
+				case "password":
+					if(strlen($data[$field[2]]) < 6)
+					{
+						$this->error_msg[]	= 'Passwort aus Feld "'.$field[1].'" ist zu kurz. Mindeslänge 6 Zeichen!';
+						$return = False;
+					}
+					if(preg_match("/^([a-z]|[0-9]|[^\w]){6,}$/i", $data[$field[2]]))
+					{
+						$this->error_msg[]	= 'Passwort aus Feld "'.$field[1].'" ist zu schwach. Bitte mindestens 2 Zeichengruppen verwenden (Sonderzeichen, Buchstaben, Zahlen)';
+						$return = False;
+					}
+					break;
+				case "textarea":
+					break;
+			}
+		}
+		return $return;
+	}
+	
+	private function GetErrorMsg()
+	{
+		$return		= "";
+		foreach($this->error_msg as $msg)
+		{
+			$this->tpl->vars("message", 	$msg);
+			$return	.= $this->tpl->load("_form_error_msg");
+		}
+		$this->tpl->vars("error_message",		$return);
+		return $this->tpl->load("_form_error");
+	}
 	
 	private function GetFormFields(array $fields)
 	{
@@ -32,7 +87,6 @@ class pyBashForm {
 	
 	private function GetFormField(array $field)
 	{
-		$field[2] = (isset($field[2]) ? $field[2] : ""); //Message dosen't need a name
 		$field[3] = (isset($field[3]) ? $field[3] : "");
 		$field[4] = (isset($field[4]) ? $field[4] : "");
 			
@@ -64,9 +118,6 @@ class pyBashForm {
 				break;
 			case 'submit':
 				return $this->tpl->load("_form_submit");
-				break;
-			case 'error':
-				return $this->tpl->load("_form_error");
 				break;
 		}
 	}
