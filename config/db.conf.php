@@ -5,7 +5,7 @@
 // +----------------------------------------------------------------------+
 define("MYSQL_HOST",		"localhost");
 define("MYSQL_USER",		"root");
-define("MYSQL_PASS",		"");
+define("MYSQL_PASS",		"lanocrew-mysql_server");
 define("MYSQL_DB",			"pyBash");
 
 define("MYSQL_PREFIX",	"pyBash_");
