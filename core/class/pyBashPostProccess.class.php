@@ -30,7 +30,7 @@ class pyBashPostProccess
     			return preg_replace_callback("/[a-z]+[a-z0-9\-\.\_]+?@[a-z0-9\-\.]+[a-z]{2,6}/x", function($matches){return base64_encode($matches[0]);}, $all);
     		}
     	
-    		$text 		= strtr($address,array("@"=> " ät "));
+    		$text 		= strtr($address,array("@"=> " ät ", "." => " dot "));
     		$address	= base64_encode($address); 
     	
     		return $before.'<a href="mailto:'.$address.'">'.$text.'</a>'.$after;

@@ -15,7 +15,7 @@ class ContentController extends AbstractController
 		}
 		else
 		{
-			throw pyBashException("Contentfile doen't exists!");
+			throw new pyBashException("Contentfile doen't exists!");
 			return false;
 		}
 	}

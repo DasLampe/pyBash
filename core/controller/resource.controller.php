@@ -52,7 +52,7 @@ class resourceController
 	private function getHeaderType($file)
 	{
 		$type	= explode(".", $file);
-		switch($type[1])
+		switch($type[count($type) -1])
 		{
 			 case "css":
 				$type = "text/css";

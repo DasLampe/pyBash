@@ -15,32 +15,39 @@ class pageController
 
 	function render()
 	{
-		$tpl				= $this->tpl;
-
-		//Sidebar
-		include_once(PATH_CONTROLLER."sidebar.php");
-		$sidebar				= new SidebarController($this->param);
-		$tpl->vars("sidebar",	$sidebar->factoryController());
-
-		//Content
-		if(file_exists(PATH_CONTENT.$this->param[0].".php") && !file_exists(PATH_CONTROLLER.$this->param[0].".php"))
+		try
 		{
-			include_once(PATH_CONTROLLER."content.php");
-			$page_controller	= new ContentController($this->param);
+			$tpl				= $this->tpl;
+	
+			//Sidebar
+			include_once(PATH_CONTROLLER."sidebar.php");
+			$sidebar				= new SidebarController($this->param);
+			$tpl->vars("sidebar",	$sidebar->factoryController());
+	
+			//Content
+			if(file_exists(PATH_CONTENT.$this->param[0].".php") && !file_exists(PATH_CONTROLLER.$this->param[0].".php"))
+			{
+				include_once(PATH_CONTROLLER."content.php");
+				$page_controller	= new ContentController($this->param);
+			}
+			elseif(file_exists(PATH_CONTROLLER.$this->param[0].".php"))
+			{
+				include_once(PATH_CONTROLLER.$this->param[0].".php");
+				$page_controller	= ucfirst($this->param[0]).'Controller';
+				$page_controller	= new $page_controller($this->param);
+			}
+			else
+			{
+				throw new pyBashException("Error 404");
+			}
+			$this->tpl->vars("page_content", $page_controller->factoryController());
 		}
-		elseif(file_exists(PATH_CONTROLLER.$this->param[0].".php"))
+		catch(pyBashException $e)
 		{
-			include_once(PATH_CONTROLLER.$this->param[0].".php");
-			$page_controller	= ucfirst($this->param[0]).'Controller';
-			$page_controller	= new $page_controller($this->param);
+			$this->tpl->vars("page_content", $e->getCustomMessage());
 		}
-		else
-		{
-			include_once(PATH_CORE_CONTROLLER."error.controller.php");
-			$page_controller	= new ErrorController('404');
-		}
-
-		$this->tpl->vars("page_content", $page_controller->factoryController());
-		echo $this->tpl->load("layout");
+		
+		
+		echo pyBashPostProccess::protectEmail($this->tpl->load("layout"));
 	}
 }
