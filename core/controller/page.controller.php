@@ -16,14 +16,19 @@ class pageController
 	function render()
 	{
 		$tpl				= $this->tpl;
-		
+
 		//Sidebar
 		include_once(PATH_CONTROLLER."sidebar.php");
-		$sidebar			= new SidebarController($this->param);
+		$sidebar				= new SidebarController($this->param);
 		$tpl->vars("sidebar",	$sidebar->factoryController());
-		
+
 		//Content
-		if(file_exists(PATH_CONTROLLER.$this->param[0].".php"))
+		if(file_exists(PATH_CONTENT.$this->param[0].".php") && !file_exists(PATH_CONTROLLER.$this->param[0].".php"))
+		{
+			include_once(PATH_CONTROLLER."content.php");
+			$page_controller	= new ContentController($this->param);
+		}
+		elseif(file_exists(PATH_CONTROLLER.$this->param[0].".php"))
 		{
 			include_once(PATH_CONTROLLER.$this->param[0].".php");
 			$page_controller	= ucfirst($this->param[0]).'Controller';
@@ -34,7 +39,7 @@ class pageController
 			include_once(PATH_CORE_CONTROLLER."error.controller.php");
 			$page_controller	= new ErrorController('404');
 		}
-		
+
 		$this->tpl->vars("page_content", $page_controller->factoryController());
 		echo $this->tpl->load("layout");
 	}

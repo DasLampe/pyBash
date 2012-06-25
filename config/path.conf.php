@@ -20,6 +20,7 @@ define("PATH_VIEW",				PATH_PAGES."views/");
 define("PATH_MODEL",			PATH_PAGES."models/");
 define("PATH_PAGES_TPL",		PATH_PAGES."template/");
 
+define("PATH_CONTENT",			PATH_PAGES."content/");
 
 define("LINK_MAIN",				"http://localhost/pyBash/");
 define("LINK_TPL",				LINK_MAIN."template/");
