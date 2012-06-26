@@ -22,6 +22,11 @@ class pyBashForm {
 		return $this->tpl->load("form");
 	}
 	
+	public function SetErrorMsg($msg)
+	{
+		$this->error_msg[]	= $msg;
+	}
+	
 	public function Validation(array $fields, array $data)
 	{
 		$return = True;
