@@ -53,19 +53,27 @@ class pyBashForm {
 					if(strlen($data[$field[2]]) < 6)
 					{
 						$this->error_msg[]	= 'Passwort aus Feld "'.$field[1].'" ist zu kurz. Mindeslänge 6 Zeichen!';
-						$return = False;
 					}
 					if(preg_match("/^([a-z]|[0-9]|[^\w]){6,}$/i", $data[$field[2]]))
 					{
 						$this->error_msg[]	= 'Passwort aus Feld "'.$field[1].'" ist zu schwach. Bitte mindestens 2 Zeichengruppen verwenden (Sonderzeichen, Buchstaben, Zahlen)';
-						$return = False;
+					}
+					break;
+				case "email":
+					if(filter_var($data[$field[2]], FILTER_VALIDATE_EMAIL) == false)
+					{
+						$this->error_msg[]	= 'Bitte eine richtige Email-Adresse, im Feld "'.$field[1].'" angeben!';
 					}
 					break;
 				case "textarea":
 					break;
 			}
 		}
-		return $return;
+		if(!empty($this->error_msg))
+		{
+			return false;
+		}
+		return true;
 	}
 	
 	private function GetErrorMsg()
